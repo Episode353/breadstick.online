@@ -348,23 +348,52 @@ function addChatMessage(name, message) {
     chatMessages.scrollTop = chatMessages.scrollHeight;
 }
 
-// Function to send a chat message to Firebase
-function sendChatMessage(message) {
-    if (message) {
-        // Get the player's name
-        const playerName = players[playerId].name;
+    function sendChatMessage(message) {
+        if (message) {
+            // Get the player's name
+            const playerName = players[playerId].name;
 
-        // Save the message to Firebase
-        const chatRef = firebase.database().ref('chat');
-        chatRef.push({
-            name: playerName,
-            message: message,
-        });
+            // Get the current timestamp
+            const timestamp = firebase.database.ServerValue.TIMESTAMP;
 
-        // Clear the input field
-        chatInput.value = '';
+            // Save the message to Firebase with a timestamp
+            const chatRef = firebase.database().ref('chat');
+            chatRef.push({
+                name: playerName,
+                message: message,
+                timestamp: timestamp,
+            });
+
+            // Clear the input field
+            chatInput.value = '';
+        }
     }
-}
+
+    // Function to periodically check and delete expired messages
+    function checkAndDeleteExpiredMessages() {
+        const chatRef = firebase.database().ref('chat');
+        const currentTime = Date.now();
+
+        chatRef.once('value', (snapshot) => {
+            snapshot.forEach((childSnapshot) => {
+                const chatData = childSnapshot.val();
+                const messageTimestamp = chatData.timestamp;
+
+                // Define the maximum message age (in milliseconds)
+                const maxMessageAge = 60 * 1000; // For example, every minute
+
+                // Check if the message has expired
+                if (currentTime - messageTimestamp > maxMessageAge) {
+                    // Message has expired, delete it
+                    childSnapshot.ref.remove();
+                }
+            });
+        });
+    }
+
+    // Call the checkAndDeleteExpiredMessages function periodically (e.g., every minute)
+    setInterval(checkAndDeleteExpiredMessages, 60 * 1000); // Run every minute
+
 
 // Add event listener for the Send button
 sendButton.addEventListener('click', () => {
