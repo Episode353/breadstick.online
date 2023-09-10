@@ -129,6 +129,7 @@ const playerColorButton = document.querySelector("#player-color");
 
 
 function placeCoin() {
+    console.log("Placing Coins");
     const { x, y } = getRandomSafeSpot();
     const coinRef = firebase.database().ref(`coins/${getKeyString(x, y)}`);
     coinRef.set({
@@ -179,7 +180,7 @@ function handleArrowPress(xChange = 0, yChange = 0) {
 }
 
 function initGame() {
-    console.log("running func InitGame")
+    console.log("Running InitGame")
     new KeyPressListener("ArrowUp", () => handleArrowPress(0, -1))
     new KeyPressListener("ArrowDown", () => handleArrowPress(0, 1))
     new KeyPressListener("ArrowLeft", () => handleArrowPress(-1, 0))
@@ -297,6 +298,8 @@ function initGame() {
         })
     })
 
+    placeCoin();
+
     // Load the spawn point from map data
     const spawnPoint = mapData.spawnpoint;
 
@@ -305,8 +308,7 @@ function initGame() {
     playerRef.set(players[playerId]);
     console.log("bals");
 
-    //Place my first coin
-    placeCoin();
+
 
 
 
@@ -353,8 +355,8 @@ firebase.auth().onAuthStateChanged((user) => {
         // Remove me from Firebase when I disconnect
         playerRef.onDisconnect().remove();
         loadingEnd();
-        // Begin the game now that we are signed in
         initGame();
+
         
     } else {
         //You're logged out.
