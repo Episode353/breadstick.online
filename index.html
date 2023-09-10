@@ -1,4 +1,4 @@
-<html>
+﻿<html>
 <head>
     <title>Breadstick Demo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,7 +16,7 @@
 <!--https://www.youtube.com/watch?v=xhURh2RDzzg&ab_channel=DrewConley-->
 
 <body>
-    <p style="bottom:0px; left:0px; position: absolute;">
+    <p style="top:0px; right:0px; position: absolute;">
         <a href="https://www.youtube.com/watch?v=xhURh2RDzzg&ab_channel=DrewConley">Based off of project From Drew Conley</a>
     </p>
     <div class="game-container">
@@ -41,6 +41,16 @@
         </div>
     </div>
 
+    <div class="move-container">
+        <button class="empty-move" ></button>
+        <button class="move-button" onclick="handleArrowPress(0, -1)">🡹</button>
+        <button class="empty-move"></button>
+        <button class="move-button"onclick="handleArrowPress(-1, 0)">🡸</button>
+        <button class="empty-move"></button>
+        <button class="move-button"onclick="handleArrowPress(1, 0)">🡺</button>
+        <button class="empty-move"></button>
+        <button class="move-button"onclick="handleArrowPress(0, 1)">🡻</button>
+    </div>
 
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>

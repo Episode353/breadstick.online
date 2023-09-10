@@ -27,6 +27,7 @@ html, body {
   top: 0;
   left:0;
   padding: 1em;
+  padding: 1em;
   display: flex;
   gap: 0.5em;
   align-items: flex-end
@@ -183,4 +184,30 @@ button:active {
 
 #send-button {
     margin-left: 10px;
+}
+
+.move-container {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background-color: transparent;
+    overflow: hidden;
+    display: grid;
+    grid-template-rows: 5vw 5vw 5vw;
+    grid-template-columns: 5vw 5vw 5vw;
+}
+
+.move-button {
+    background: #444;
+    border: 1px solid #555;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #AAA;
+    height: 100%;
+}
+
+.empty-move{
+    background-color: transparent;
+    border: none;
 }
