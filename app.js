@@ -171,6 +171,10 @@ function handleArrowPress(xChange = 0, yChange = 0) {
         attemptGrabCoin(newX, newY);
         console.log("Moved to X=",newX,"Y=", newY);
     }
+
+    if (players[playerId].y === 11 && players[playerId].x === 13) {
+        console.log("portal noises");
+    }
 }
 
 function initGame() {
@@ -452,3 +456,4 @@ chatRef.on('child_removed', (snapshot) => {
     const messageId = snapshot.key;
     removeChatMessage(messageId);
 });
+
