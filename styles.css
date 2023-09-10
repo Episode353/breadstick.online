@@ -241,3 +241,11 @@ button:active {
     pointer-events: none;
     touch-action: manipulation;
 }
+
+.loadingDiv {
+    font-size: 2rem;
+    background: grey;
+    width: 15rem;
+    height: 15rem;
+    border: 3px white groove;
+}

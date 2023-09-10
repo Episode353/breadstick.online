@@ -311,6 +311,20 @@ function initGame() {
 
 }
 
+function loadingEnd() {
+    console.log("Loading Finished");
+    const loadingContainer = document.querySelector(".loadingDiv");
+    const movecontainer = document.querySelector(".move-container");
+    const playerinfo = document.querySelector(".player-info");
+
+    loadingContainer.style.display = "none";
+    gameContainer.style.display = "block";
+    movecontainer.style.display = "grid";
+    playerinfo.style.display = "block";
+    chatContainer.style.display = "block";
+
+}
+
 firebase.auth().onAuthStateChanged((user) => {
     console.log(user)
     if (user) {
@@ -337,9 +351,10 @@ firebase.auth().onAuthStateChanged((user) => {
 
         // Remove me from Firebase when I disconnect
         playerRef.onDisconnect().remove();
-
+        loadingEnd();
         // Begin the game now that we are signed in
         initGame();
+        
     } else {
         //You're logged out.
     }

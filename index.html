@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/styles.css?v=6" type="text/css">
+    <link rel="stylesheet" href="/styles.css?v=7" type="text/css">
 
     <style>
     </style>
@@ -18,9 +18,9 @@
     <p style="top:0px; right:0px; position: absolute;">
         <a href="https://www.youtube.com/watch?v=xhURh2RDzzg&ab_channel=DrewConley">Based off of project From Drew Conley</a>
     </p>
-    <div class="game-container">
+    <div class="game-container" style="display:none;">
     </div>
-    <div class="player-info">
+    <div class="player-info" style="display:none;">
         <div>
             <label for="player-name">Your Name</label>
             <input id="player-name" maxlength="10" type="text" />
@@ -30,7 +30,7 @@
         </div>
     </div>
 
-    <div class="chat-container minimized">
+    <div class="chat-container minimized" style="display: none;">
         <button id="minimize-button">-</button>
         <div class="chat-messages">
             <div id="chat-messages"></div>
@@ -41,8 +41,16 @@
         </div>
     </div>
 
+    <div class="loadingDiv">
+        <center>
+            <p>Loading...</p>
+            <br />
+            <img src="../images/beegfishstrobe.gif" />
+        </center>
+    </div>
 
-    <div class="move-container">
+
+    <div class="move-container" style="display:none;">
         <button class="empty-move" disabled aria-hidden="true"></button>
         <button class="move-button" onclick="handleArrowPress(0, -1)">⇧</button>
         <button class="empty-move" disabled aria-hidden="true"></button>
