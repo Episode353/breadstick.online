@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/styles.css?v=3" type="text/css">
+    <link rel="stylesheet" href="/styles.css?v=4" type="text/css">
 
     <style>
     </style>
@@ -43,14 +43,14 @@
 
 
     <div class="move-container">
-        <button class="empty-move"></button>
-        <button class="move-button" onclick="handleArrowPress(0, -1)">🡹</button>
-        <button class="empty-move"></button>
-        <button class="move-button" onclick="handleArrowPress(-1, 0)">🡸</button>
-        <button class="empty-move"></button>
-        <button class="move-button" onclick="handleArrowPress(1, 0)">🡺</button>
-        <button class="empty-move"></button>
-        <button class="move-button" onclick="handleArrowPress(0, 1)">🡻</button>
+        <button class="empty-move" disabled aria-hidden="true"></button>
+        <button class="move-button" onclick="handleArrowPress(0, -1)">⇧</button>
+        <button class="empty-move" disabled aria-hidden="true"></button>
+        <button class="move-button" onclick="handleArrowPress(-1, 0)">⇦</button>
+        <button class="empty-move" disabled aria-hidden="true"></button>
+        <button class="move-button" onclick="handleArrowPress(1, 0)">⇨</button>
+        <button class="empty-move" disabled aria-hidden="true"></button>
+        <button class="move-button" onclick="handleArrowPress(0, 1)">⇩</button>
     </div>
 
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>

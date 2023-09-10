@@ -228,10 +228,12 @@ button:active {
     align-items: center;
     justify-content: center;
     color: #AAA;
+    font-size: 2rem;
     height: 100%;
 }
 
-.empty-move{
+.empty-move {
     background-color: transparent;
     border: none;
+    pointer-events: none;
 }
