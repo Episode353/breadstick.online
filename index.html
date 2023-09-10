@@ -8,6 +8,7 @@
 
     <style>
     </style>
+
 </head>
 
 <!--Based off of Template From Drew Conley-->
@@ -30,6 +31,7 @@
     </div>
 
     <div class="chat-container">
+        <button id="minimize-button">-</button>
         <div class="chat-messages">
             <div id="chat-messages"></div>
         </div>
@@ -39,15 +41,16 @@
         </div>
     </div>
 
+
     <div class="move-container">
-        <button class="empty-move" ></button>
+        <button class="empty-move"></button>
         <button class="move-button" onclick="handleArrowPress(0, -1)">🡹</button>
         <button class="empty-move"></button>
-        <button class="move-button"onclick="handleArrowPress(-1, 0)">🡸</button>
+        <button class="move-button" onclick="handleArrowPress(-1, 0)">🡸</button>
         <button class="empty-move"></button>
-        <button class="move-button"onclick="handleArrowPress(1, 0)">🡺</button>
+        <button class="move-button" onclick="handleArrowPress(1, 0)">🡺</button>
         <button class="empty-move"></button>
-        <button class="move-button"onclick="handleArrowPress(0, 1)">🡻</button>
+        <button class="move-button" onclick="handleArrowPress(0, 1)">🡻</button>
     </div>
 
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
@@ -70,5 +73,15 @@
 
     <script src="/KeyPressListener.js"></script>
     <script src="/app.js"></script>
+    <script>
+        // Add JavaScript to toggle the chat between minimized and expanded state
+        const minimizeButton = document.getElementById('minimize-button');
+        const chatContainer = document.querySelector('.chat-container');
+
+        minimizeButton.addEventListener('click', () => {
+            chatContainer.classList.toggle('minimized');
+        });
+
+    </script>
 </body>
 </html>

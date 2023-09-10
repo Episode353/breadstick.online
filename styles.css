@@ -186,6 +186,30 @@ button:active {
     margin-left: 10px;
 }
 
+/* Add styles for the minimize button */
+#minimize-button {
+    background: #444;
+    border: 1px solid #555;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #AAA;
+    height: 100%;
+    width: 30px; /* Adjust the width as needed */
+    cursor: pointer;
+}
+
+/* Style for the minimized chat */
+.minimized {
+    width: 30px; /* Adjust the width as needed */
+}
+
+    /* Adjust the chat messages and chat input when minimized */
+    .minimized .chat-messages,
+    .minimized .chat-input {
+        display: none;
+    }
+
 .move-container {
     position: absolute;
     bottom: 10px;
@@ -193,8 +217,8 @@ button:active {
     background-color: transparent;
     overflow: hidden;
     display: grid;
-    grid-template-rows: 5vw 5vw 5vw;
-    grid-template-columns: 5vw 5vw 5vw;
+    grid-template-rows: 5rem 5rem 5rem;
+    grid-template-columns: 5rem 5rem 5rem;
 }
 
 .move-button {
