@@ -174,6 +174,7 @@ function handleArrowPress(xChange = 0, yChange = 0) {
 
     if (players[playerId].y === 11 && players[playerId].x === 13) {
         console.log("portal noises");
+        window.location.replace("http://www.joesworld.online");
     }
 }
 
