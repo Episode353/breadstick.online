@@ -234,8 +234,6 @@ function getRandomSafeSpot() {
       delete playerElements[removedKey];
     })
 
-
-    //New - not in the video!
     //This block will remove coins from local state when Firebase `coins` value updates
     allCoinsRef.on("value", (snapshot) => {
       coins = snapshot.val() || {};
@@ -339,14 +337,25 @@ const chatInput = document.getElementById('chat-input');
 const sendButton = document.getElementById('send-button');
 const chatMessages = document.getElementById('chat-messages');
 
+
 // Function to add a chat message to the chat container
-function addChatMessage(name, message) {
+function addChatMessage(name, message, messageId) {
     const messageElement = document.createElement('div');
     messageElement.className = 'chat-message';
+    messageElement.setAttribute('data-message-id', messageId);
     messageElement.innerText = `${name}: ${message}`;
     chatMessages.appendChild(messageElement);
     chatMessages.scrollTop = chatMessages.scrollHeight;
 }
+
+
+    // Function to remove a chat message from the chat container
+    function removeChatMessage(messageId) {
+        const messageElement = chatMessages.querySelector(`[data-message-id="${messageId}"]`);
+        if (messageElement) {
+            chatMessages.removeChild(messageElement);
+        }
+    }
 
     function sendChatMessage(message) {
         if (message) {
@@ -380,19 +389,24 @@ function addChatMessage(name, message) {
                 const messageTimestamp = chatData.timestamp;
 
                 // Define the maximum message age (in milliseconds)
-                const maxMessageAge = 60 * 1000; // For example, every minute
+                const maxMessageAge =60 * 1000; // For example, every minute
 
                 // Check if the message has expired
                 if (currentTime - messageTimestamp > maxMessageAge) {
+
                     // Message has expired, delete it
                     childSnapshot.ref.remove();
+                    console.log("Message removed");
+                }
+                else {
+                    console.log("No messages exceed maximum age");
                 }
             });
         });
     }
 
-    // Call the checkAndDeleteExpiredMessages function periodically (e.g., every minute)
-    setInterval(checkAndDeleteExpiredMessages, 60 * 1000); // Run every minute
+    // Call the checkAndDeleteExpiredMessages function periodically
+    setInterval(checkAndDeleteExpiredMessages,60 * 1000);
 
 
 // Add event listener for the Send button
@@ -409,12 +423,20 @@ chatInput.addEventListener('keypress', (e) => {
     }
 });
 
-// Listen for new chat messages from Firebase
-const chatRef = firebase.database().ref('chat');
-chatRef.on('child_added', (snapshot) => {
-    const chatData = snapshot.val();
-    addChatMessage(chatData.name, chatData.message);
-});
+    const chatRef = firebase.database().ref('chat');
+
+    // Listen for new chat messages from Firebase
+    chatRef.on('child_added', (snapshot) => {
+        const chatData = snapshot.val();
+        const messageId = snapshot.key;
+        addChatMessage(chatData.name, chatData.message, messageId);
+    });
+
+    // Listen for chat message removals from Firebase
+    chatRef.on('child_removed', (snapshot) => {
+        const messageId = snapshot.key;
+        removeChatMessage(messageId);
+    });
 
 
 
