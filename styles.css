@@ -220,6 +220,7 @@ button:active {
     display: grid;
     grid-template-rows: 44px 44px 44px;
     grid-template-columns: 44px 44px 44px;
+    touch-action: manipulation;
 }
 
 .move-button {
@@ -231,10 +232,12 @@ button:active {
     color: #AAA;
     font-size: 2rem;
     height: 100%;
+    touch-action: manipulation;
 }
 
 .empty-move {
     background-color: transparent;
     border: none;
     pointer-events: none;
+    touch-action: manipulation;
 }
