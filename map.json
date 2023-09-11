@@ -1,6 +1,6 @@
 {
   "minX": 1,
-  "maxX": 14,
+  "maxX": 100,
   "minY": 4,
   "maxY": 12,
   "blockedSpaces": {
