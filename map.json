@@ -18,7 +18,14 @@
     "9x9": true
   },
   "spawnpoint": {
-    "x": 8,
-    "y": 6
-  }
+    "x": 3,
+    "y": 4
+  },
+  "loadingZones": [
+    {
+      "x": 13,
+      "y": 11,
+      "url": "http://joesworld.online"
+    }
+  ]
 }

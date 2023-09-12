@@ -93,25 +93,26 @@ function getRandomSafeSpot() {
     ]);
 }
 
-// Add this function to load the map data from a URL
 function loadMapDataFromURL(url) {
     fetch(url)
         .then((response) => response.json())
         .then((data) => {
-            // Update the mapData variable with the loaded data
             mapData.minX = data.minX;
             mapData.maxX = data.maxX;
             mapData.minY = data.minY;
             mapData.maxY = data.maxY;
             mapData.blockedSpaces = data.blockedSpaces;
-            mapData.spawnpoint = data.spawnpoint; // Add this line
+            mapData.spawnpoint = data.spawnpoint;
+            mapData.loadingZones = data.loadingZones;
             console.log("Successfully Loaded Map: " + url);
             console.log("Spawn Point: ", mapData.spawnpoint);
+            console.log("Loading Zones: ", mapData.loadingZones);
         })
         .catch((error) => {
             console.error('Error loading map data:', error);
         });
 }
+
 
 // Call the function to load map data when the game starts
 loadMapDataFromURL('map.json'); 
@@ -335,11 +336,7 @@ firebase.auth().onAuthStateChanged((user) => {
         
     } else {
         //You're logged out.
-<<<<<<< Updated upstream
-        location.reload();
-=======
         console.log("You have been logged out.");
->>>>>>> Stashed changes
     }
 })
 
