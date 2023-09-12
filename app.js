@@ -13,7 +13,7 @@ function getKeyString(x, y) {
 
 function createName() {
     const prefix = randomFromArray([
-        "COOL",
+        "BEEG",
         "SUPER",
         "HIP",
         "SMUG",
@@ -32,6 +32,7 @@ function createName() {
         "DOPE",
     ]);
     const animal = randomFromArray([
+        "FISH",
         "BEAR",
         "DOG",
         "CAT",
@@ -113,7 +114,7 @@ function loadMapDataFromURL(url) {
 }
 
 // Call the function to load map data when the game starts
-loadMapDataFromURL('map.json'); // Replace with your actual URL
+loadMapDataFromURL('map.json'); 
 
 
 let playerId;
@@ -286,6 +287,7 @@ function initGame() {
 
 }
 
+//When firebase is loaded, this function is executed before InitGame, so give a loading screen.
 function loadingEnd() {
     console.log("Loading Finished");
     const loadingContainer = document.querySelector(".loadingDiv");
@@ -301,11 +303,11 @@ function loadingEnd() {
 }
 
 firebase.auth().onAuthStateChanged((user) => {
-    console.log(user)
     if (user) {
         // You're logged in!
         playerId = user.uid;
         playerRef = firebase.database().ref(`players/${playerId}`);
+        console.log("Logged in: ", playerId);
 
         const name = createName();
         playerNameInput.value = name;
@@ -333,7 +335,11 @@ firebase.auth().onAuthStateChanged((user) => {
         
     } else {
         //You're logged out.
+<<<<<<< Updated upstream
         location.reload();
+=======
+        console.log("You have been logged out.");
+>>>>>>> Stashed changes
     }
 })
 
