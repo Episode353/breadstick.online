@@ -92,7 +92,6 @@ function getRandomSafeSpot() {
         { x: 11, y: 4 },
     ]);
 }
-
 // Function to parse query parameters from the URL
 function getQueryParam(param) {
     const urlSearchParams = new URLSearchParams(window.location.search);
@@ -103,10 +102,14 @@ function getQueryParam(param) {
 const mapsFolder = 'maps';
 
 // Call the function to load map data when the game starts
-const mapToLoad = getQueryParam('m') || 'map.json'; // Default to 'map.json' if 'm' is not provided
-const mapUrl = mapToLoad.endsWith(".json") ? mapToLoad : `${mapsFolder}/${mapToLoad}.json`;
-loadMapDataFromURL(mapUrl);
-
+const mapToLoad = getQueryParam('m');
+if (mapToLoad) {
+    const mapUrl = mapToLoad.endsWith(".json") ? mapToLoad : `${mapsFolder}/${mapToLoad}.json`;
+    loadMapDataFromURL(mapUrl);
+} else {
+    // Load a default map if 'm' query parameter is not present
+    loadMapDataFromURL(`${mapsFolder}/map.json`);
+}
 
 
 
