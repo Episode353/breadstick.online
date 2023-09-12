@@ -104,14 +104,19 @@ function loadMapDataFromURL(url) {
             mapData.blockedSpaces = data.blockedSpaces;
             mapData.spawnpoint = data.spawnpoint;
             mapData.loadingZones = data.loadingZones;
+            mapData.backgroundImage = data.backgroundImage; // Add this line
             console.log("Successfully Loaded Map: " + url);
             console.log("Spawn Point: ", mapData.spawnpoint);
             console.log("Loading Zones: ", mapData.loadingZones);
+
+            // Set the background image dynamically
+            gameContainer.style.background = `url(${mapData.backgroundImage}) no-repeat no-repeat`;
         })
         .catch((error) => {
             console.error('Error loading map data:', error);
         });
 }
+
 
 
 // Call the function to load map data when the game starts
@@ -271,6 +276,9 @@ function initGame() {
             color: nextColor
         })
     })
+
+    // Set the background image dynamically
+    gameContainer.style.background = `url(${mapData.backgroundImage}) no-repeat no-repeat`;
 
     placeCoin();
 
